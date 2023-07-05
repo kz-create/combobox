@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: For ComboBox API
+  description: ""
+  version: 1.0.0
+servers:
+  - url: https://localhost/api
+paths:
+  /lists:
+    get:
+      summary: Get All Name API
+      description: Get all name with category
+      parameters:
+        - name: category
+          in: path
+          description: tab category
+          required: false
+          schema:
+            type: string
+        - name: input
+          in: path
+          description: input keyword
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Lists"
+        "400":
+          description: Bad Request
+  /categories:
+    get:
+      summary: Get All Category API
+      description: Get all tab category
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Categories"
+        "400":
+          description: Bad Request
+
+components:
+  schemas:
+    Lists:
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+            example: 営業本部
+          category:
+            type: string
+            example: 部門
+    Categories:
+      type: array
+      items:
+      example:
+        - 部門
+        - 補助科目
