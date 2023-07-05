@@ -1,15 +1,20 @@
 import useSWR from "swr";
 
-type ListResponse = string[];
+export type ListResponse = {
+  name: string;
+  category: string;
+};
 
-async function fetcherList(url: string): Promise<ListResponse> {
+async function fetcherList(url: string): Promise<ListResponse[]> {
   const res = await fetch(url);
   return res.json();
 }
 
-export const useCompletionList = (category: string) => {
+export const useCompletionList = (category: string, input: string) => {
   const { data, error, isLoading } = useSWR(
-    `/lists?category=${encodeURIComponent(category)}`,
+    `/lists?category=${encodeURIComponent(category)}&input=${encodeURIComponent(
+      input
+    )}`,
     fetcherList
   );
   return {
