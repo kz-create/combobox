@@ -19,11 +19,23 @@
 1. node、pnpm がインストールされている
 2. `docker compose`コマンドが実行できる
 
-- 下記コマンドでサーバを起動後、[localhost:5173](http://localhost:5173)にアクセス
+- モジュールをインストール
 
 ```bash
 pnpm install
+```
+
+- 下記コマンドでサーバを起動後、[localhost:5173](http://localhost:5173)にアクセス
+
+```bash
 pnpm dev
+```
+
+- または下記コマンドでビルド&サーバを起動後、[localhost:4173](http://localhost:4173)にアクセス
+
+```bash
+pnpm build
+pnpm preview
 ```
 
 ## Swagger UI の閲覧方法
