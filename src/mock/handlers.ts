@@ -14,10 +14,6 @@ const allList = [
     category: "部門",
   },
   {
-    name: "採用本部",
-    category: "部門",
-  },
-  {
     name: "開発本部",
     category: "部門",
   },
@@ -42,10 +38,6 @@ const allList = [
 const departmentList = [
   {
     name: "営業本部",
-    category: "部門",
-  },
-  {
-    name: "採用本部",
     category: "部門",
   },
   {
@@ -80,13 +72,20 @@ export const handlers = [
 
     if (category === "部門") {
       return res(
-        ctx.json(departmentList.filter((v) => v.name.includes(input)))
+        ctx.json(departmentList.filter((v) => v.name.includes(input))),
+        ctx.delay(5000)
       );
     } else if (category === "補助科目") {
-      return res(ctx.json(subjectList.filter((v) => v.name.includes(input))));
+      return res(
+        ctx.json(subjectList.filter((v) => v.name.includes(input))),
+        ctx.delay(5000)
+      );
     }
 
-    return res(ctx.json(allList.filter((v) => v.name.includes(input))));
+    return res(
+      ctx.json(allList.filter((v) => v.name.includes(input))),
+      ctx.delay(5000)
+    );
   }),
   rest.get(`/categories`, async (req, res, ctx) => {
     const categories = ["部門", "補助科目"];
