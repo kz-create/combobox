@@ -1,7 +1,7 @@
 import { ComboBox } from "./ComboBox";
 import "./App.css";
 import { RecoilRoot } from "recoil";
-import { worker } from "./mock/browser";
+import { worker } from "../mock/browser";
 
 worker.start();
 
