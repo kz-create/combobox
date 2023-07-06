@@ -72,20 +72,13 @@ export const handlers = [
 
     if (category === "部門") {
       return res(
-        ctx.json(departmentList.filter((v) => v.name.includes(input))),
-        ctx.delay(5000)
+        ctx.json(departmentList.filter((v) => v.name.includes(input)))
       );
     } else if (category === "補助科目") {
-      return res(
-        ctx.json(subjectList.filter((v) => v.name.includes(input))),
-        ctx.delay(5000)
-      );
+      return res(ctx.json(subjectList.filter((v) => v.name.includes(input))));
     }
 
-    return res(
-      ctx.json(allList.filter((v) => v.name.includes(input))),
-      ctx.delay(5000)
-    );
+    return res(ctx.json(allList.filter((v) => v.name.includes(input))));
   }),
   rest.get(`/categories`, async (req, res, ctx) => {
     const categories = ["部門", "補助科目"];
