@@ -25,9 +25,16 @@ export const ComboBox = () => {
   const { category, isCategoryLoading } = useCategoryList();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const element = document.getElementById("input-field");
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.preventDefault();
     setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const handleFocus = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.preventDefault();
+    element?.focus();
   };
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
@@ -53,6 +60,7 @@ export const ComboBox = () => {
   return (
     <>
       <TextField
+        id="input-field"
         multiline
         rows={2}
         maxRows={2}
@@ -79,6 +87,7 @@ export const ComboBox = () => {
                 disableFocusRipple
                 value=""
                 label="全て"
+                onClick={handleFocus}
               />
               {category?.map((item, index) => {
                 if (item !== confirmedValue.category) {
@@ -89,6 +98,7 @@ export const ComboBox = () => {
                       disableFocusRipple
                       value={item}
                       label={item}
+                      onClick={handleFocus}
                     />
                   );
                 }
@@ -113,6 +123,7 @@ export const ComboBox = () => {
                           setSearchCategory("");
                           setSearchKey("");
                           setConfirmedValue(item);
+                          element?.focus();
                         }}
                       >
                         <StyledDiv>
