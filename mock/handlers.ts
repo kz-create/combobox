@@ -1,13 +1,5 @@
 import { rest } from "msw";
 
-function sleep(msec: number) {
-  return new Promise((resolve) => {
-    window.setTimeout(() => {
-      resolve(0);
-    }, msec);
-  });
-}
-
 const allList = [
   {
     name: "営業本部",
@@ -80,7 +72,7 @@ export const handlers = [
 
     return res(ctx.json(allList.filter((v) => v.name.includes(keyword))));
   }),
-  rest.get(`/categories`, async (req, res, ctx) => {
+  rest.get(`/categories`, async (_req, res, ctx) => {
     const categories = ["部門", "補助科目"];
     return res(ctx.json(categories));
   }),
