@@ -5,11 +5,15 @@ info:
   version: 1.0.0
 servers:
   - url: https://localhost/api
+tags:
+  - name: list and category
 paths:
   /lists:
     get:
-      summary: Get All Name API
-      description: Get all name with category
+      tags:
+        - list and category
+      summary: Get All Lists API
+      description: Get all lists by category and keyword
       parameters:
         - name: category
           in: path
@@ -17,7 +21,7 @@ paths:
           required: false
           schema:
             type: string
-        - name: input
+        - name: keyword
           in: path
           description: input keyword
           required: false
@@ -32,10 +36,14 @@ paths:
                 $ref: "#/components/schemas/Lists"
         "400":
           description: Bad Request
+        "500":
+          description: Internal Server Error
   /categories:
     get:
-      summary: Get All Category API
-      description: Get all tab category
+      tags:
+        - list and category
+      summary: Get All Categories API
+      description: Get all tab categories
       responses:
         "200":
           description: Successful operation
@@ -45,6 +53,8 @@ paths:
                 $ref: "#/components/schemas/Categories"
         "400":
           description: Bad Request
+        "500":
+          description: Internal Server Error
 
 components:
   schemas:
