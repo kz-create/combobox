@@ -10,11 +10,11 @@ async function fetcherList(url: string): Promise<ListResponse[]> {
   return res.json();
 }
 
-export const useCompletionList = (category: string, input: string) => {
+export const useCompletionList = (category: string, keyword: string) => {
   const { data, error, isLoading } = useSWR(
-    `/lists?category=${encodeURIComponent(category)}&input=${encodeURIComponent(
-      input
-    )}`,
+    `/lists?category=${encodeURIComponent(
+      category
+    )}&keyword=${encodeURIComponent(keyword)}`,
     fetcherList
   );
   return {

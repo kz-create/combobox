@@ -68,17 +68,17 @@ const subjectList = [
 export const handlers = [
   rest.get(`/lists`, async (req, res, ctx) => {
     const category = req.url.searchParams.get("category") || "";
-    const input = req.url.searchParams.get("input") || "";
+    const keyword = req.url.searchParams.get("keyword") || "";
 
     if (category === "部門") {
       return res(
-        ctx.json(departmentList.filter((v) => v.name.includes(input)))
+        ctx.json(departmentList.filter((v) => v.name.includes(keyword)))
       );
     } else if (category === "補助科目") {
-      return res(ctx.json(subjectList.filter((v) => v.name.includes(input))));
+      return res(ctx.json(subjectList.filter((v) => v.name.includes(keyword))));
     }
 
-    return res(ctx.json(allList.filter((v) => v.name.includes(input))));
+    return res(ctx.json(allList.filter((v) => v.name.includes(keyword))));
   }),
   rest.get(`/categories`, async (req, res, ctx) => {
     const categories = ["部門", "補助科目"];

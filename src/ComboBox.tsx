@@ -9,8 +9,8 @@ import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
-import { useCategoryList, useCompletionList } from "./useCompletionList";
-import { ListResponse } from "./useCompletionList";
+import { useCategoryList, useCompletionList } from "./hooks";
+import { ListResponse } from "./hooks";
 
 export const ComboBox = () => {
   const [userInput, setUserInput] = useState("");
