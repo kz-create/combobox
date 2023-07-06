@@ -5,9 +5,6 @@ import styled from "@emotion/styled";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import CircularProgress from "@mui/material/CircularProgress";
-// import useAutocomplete, {
-//   AutocompleteGetTagProps,
-// } from "@mui/base/Autocomplete";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import MenuItem from "@mui/material/MenuItem";
@@ -63,40 +60,45 @@ export const ComboBox = () => {
         value={userInput}
         onChange={onChange}
       />
-      <Popper open={open} anchorEl={anchorEl} placement="bottom-start">
-        <StyledPaper elevation={3}>
-          <StyleTabs
-            value={searchCategory}
-            onChange={handleChange}
-            TabIndicatorProps={{
-              style: { display: "none", backgroundColor: "none" },
-            }}
-          >
-            <StyledTab disableRipple disableFocusRipple value="" label="全て" />
-            {category?.map((item, index) => {
-              if (item !== confirmedValue.category) {
-                return (
-                  <StyledTab
-                    key={index}
-                    disableRipple
-                    disableFocusRipple
-                    value={item}
-                    label={item}
-                  />
-                );
-              }
-            })}
-          </StyleTabs>
-          <Wrapper>
-            入力を続けると
-            {!searchCategory ? "" : searchCategory + "から"}
-            検索されます
-          </Wrapper>
-          {isListLoading || isCategoryLoading ? (
-            <Center>
-              <CircularProgress />
-            </Center>
-          ) : (
+      {isListLoading || isCategoryLoading ? (
+        <CircularProgressWrapper>
+          <StyledCircularProgress />
+        </CircularProgressWrapper>
+      ) : (
+        <Popper open={open} anchorEl={anchorEl} placement="bottom-start">
+          <StyledPaper elevation={3}>
+            <StyleTabs
+              value={searchCategory}
+              onChange={handleChange}
+              TabIndicatorProps={{
+                style: { display: "none", backgroundColor: "none" },
+              }}
+            >
+              <StyledTab
+                disableRipple
+                disableFocusRipple
+                value=""
+                label="全て"
+              />
+              {category?.map((item, index) => {
+                if (item !== confirmedValue.category) {
+                  return (
+                    <StyledTab
+                      key={index}
+                      disableRipple
+                      disableFocusRipple
+                      value={item}
+                      label={item}
+                    />
+                  );
+                }
+              })}
+            </StyleTabs>
+            <TextWrapper>
+              入力を続けると
+              {!searchCategory ? "" : searchCategory + "から"}
+              検索されます
+            </TextWrapper>
             <MenuList>
               {list.length !== 0 ? (
                 list.map((item, index) => {
@@ -127,20 +129,14 @@ export const ComboBox = () => {
                 </div>
               )}
             </MenuList>
-          )}
-        </StyledPaper>
-      </Popper>
+          </StyledPaper>
+        </Popper>
+      )}
     </>
   );
 };
 
-const Center = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Wrapper = styled.div`
+const TextWrapper = styled.div`
   border-top: 1px solid #a9a9a9;
   border-bottom: 1px solid #a9a9a9;
   text-align: left;
@@ -173,7 +169,28 @@ const StyledPaper = styled(Paper)`
   &.MuiPaper-root {
     width: 500px;
     min-height: 300px;
+    .MuiCircularProgress-root {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
+`;
+
+const CircularProgressWrapper = styled.div`
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: 999;
+`;
+
+const StyledCircularProgress = styled(CircularProgress)`
+  position: absolute;
+  left: 60%;
+  top: 60%;
 `;
 
 const StyledTab = styled(Tab)`
