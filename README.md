@@ -1,4 +1,4 @@
-# LayerX coding test
+# ComboBox
 
 ## 使用言語
 
@@ -45,7 +45,3 @@ pnpm preview
 ```bash
 docker compose up -d
 ```
-
-## デモ動画
-
-- `demo_movie.mov`
